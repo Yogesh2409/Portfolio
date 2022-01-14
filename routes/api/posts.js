@@ -57,7 +57,7 @@ router.get('/', auth, async (req, res) => {
 //@access   Private
 router.get('/:id', auth, async (req, res) => {
   try {
-    const posts = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id);
 
     if(!post) {
       return res.status(404).json({ msg: 'post not found' });
@@ -104,7 +104,7 @@ router.delete('/:id', auth, async (req, res) => {
 //@route    PUT api/posts/like/:id
 //@desc     like a post
 //@access   Private
-router.put('/like/:id',auth,async (req,res))=>{
+router.put('/like/:id',auth,async (req,res) => {
   try{
     const post=await Post.findById(req.params.id);
 
@@ -112,7 +112,7 @@ router.put('/like/:id',auth,async (req,res))=>{
     if(post.likes.filter(like=> like.user.toString()=== req.user.id).length>0){
       return res.status(400).json({msg: 'Post already liked'});
     }
-    post.likes.unshift(user:req.user.id});
+    post.likes.unshift({user:req.user.id});
     await post.save();
     res.json(post.likes);
   }catch(err){
@@ -123,7 +123,7 @@ router.put('/like/:id',auth,async (req,res))=>{
 //@route    PUT api/posts/unlike/:id
 //@desc     like a post
 //@access   Private
-router.put('/unlike/:id',auth,async (req,res))=>{
+router.put('/unlike/:id',auth,async (req,res)=>{
   try{
     const post=await Post.findById(req.params.id);
 
