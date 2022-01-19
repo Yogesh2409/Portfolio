@@ -19,7 +19,7 @@ const Register = () => {
     } else{
       console.log("SUCCESS");
 
-      //To confirm the registration of a new user
+      // To confirm the registration of a new user
       // const newUser ={
       //   name,
       //   email,

@@ -12,6 +12,8 @@
   "author": "Asim Naman Shivam Yogesh",
   "license": "ISC",
   "dependencies": {
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.6",
     "express": "^4.17.2",
@@ -19,13 +21,20 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
     "request": "^2.88.2",
     "sass": "^1.48.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "redux-devtools-extension": "^2.13.9"
   }
 }
