@@ -21,7 +21,8 @@
     "mongoose": "^6.1.6",
     "react-scripts": "^5.0.0",
     "request": "^2.88.2",
-    "sass": "^1.48.0"
+    "sass": "^1.48.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
