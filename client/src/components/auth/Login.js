@@ -15,7 +15,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    login(email, password);
+    login({email, password});
 
   };
   // Navigate if logged in
@@ -53,7 +53,7 @@ const Login = ({ login, isAuthenticated }) => {
 };
 
 
-Login.prototype = {
+Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 }
