@@ -1,6 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-const Landing = () => {
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import { Navigate } from 'react-router-dom';
+const Landing = ({isAuthenticated}) => {
+  if(isAuthenticated){
+    return <Navigate to ='/dashboard'/>
+  }
   return (
     <>
       <section className="landing">
@@ -21,5 +27,12 @@ const Landing = () => {
     </>
   )
 }
+Landing.propTypes ={
+  isAuthenticated:PropTypes.bool,
+}
+const mapStateToProps = state =>({
+  isAuthenticated:state.auth.isAuthenticated
+})
 
-export default Landing
+
+export default connect(mapStateToProps)(Landing);
