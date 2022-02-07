@@ -1,8 +1,28 @@
-import React, { Fragment, useState } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Fragment, useState } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createProfile } from '../../actions/profile';
 
-const CreateProfile = props => {
+
+
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return (
+      <Component
+        {...props}
+        router={{ location, navigate, params }}
+      />
+    );
+  }
+
+  return ComponentWithRouterProp;
+}
+
+const CreateProfile = ({ reateProfile, history }) => {
     const [formData, setFormData] = useState({
         company: '',
         website: '',
@@ -35,7 +55,10 @@ const CreateProfile = props => {
     } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
+    const onSubmit = e => {
+      e.preventDefault();
+      createProfile(formData, history);
+    }
     return (
         <Fragment>
             <h1 className="large text-primary">
@@ -46,7 +69,7 @@ const CreateProfile = props => {
         profile stand out
       </p>
       <small>* = required fields</small>
-      <form className="form">
+      <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <select name="status" value={status} onChange={e => onChange(e)}>
             <option value="0">* Select Professional Status</option>
@@ -141,7 +164,7 @@ const CreateProfile = props => {
             </Fragment>}
 
         
-        <input type="submit" className="btn btn-primary my-1" />
+        <Link to='/dashboard' className="btn btn-primary my-1">Submit</Link>
         <a className="btn btn-light my-1" href="dashboard.html">Go Back</a>
       </form>
         </Fragment>
@@ -150,7 +173,8 @@ const CreateProfile = props => {
 }
 
 CreateProfile.propTypes =  {
+  createProfile: PropTypes.func.isRequired
+};
 
-}
 
-export default CreateProfile
+export default connect(null, { createProfile })(withRouter(CreateProfile));
