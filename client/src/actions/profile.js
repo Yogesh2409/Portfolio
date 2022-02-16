@@ -41,7 +41,6 @@ export const createProfile =
         setAlert(edit ? "Profile Updated" : "Profile Created", "success")
       );
       if (!edit) {
-        console.log("hello");
         history.push("/dashboard");
       }
     } catch (err) {
